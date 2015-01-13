@@ -3,11 +3,21 @@
 	
 	<head>
 		<title>Bookmark manager</title>
-  	<link rel="stylesheet" type="text/css" href="public/stylesheets/mystyle.css">  
+  	<link rel="stylesheet" type="text/css" href="stylesheets/mystyle.css">  
 	</head>
 
 	<body>
+		
 		<h1>Welcome to the bookmark manager</h1>
+
+		<ul>
+	  	<% @links.each do |link| %>
+	    	<li>
+	    		<a href="<%= link.url %>"><%= link.title %></a>
+	    	</li>
+	  	<% end %>
+		</ul>
+
 	</body>
 
 </html>

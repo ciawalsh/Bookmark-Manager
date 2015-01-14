@@ -18,3 +18,8 @@ body {
 	text-decoration: none;
 	color: red;
 }
+
+ul li a:hover {
+	text-decoration: none;
+	color: red;
+}

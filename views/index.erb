@@ -15,8 +15,18 @@
 		
 		<% if current_user %>
 			<h1> Welcome, <%= current_user.email %> </h1>
+			<form action="/sessions" method="post">
+				<input type="hidden" name="_method" value="delete">
+				<input type="submit" value="Sign Out">
+			</form>
 		<%else%> 
 			<h1> Welcome to the bookmark manager </h1>
+		<% end %>
+
+		<% if flash[:notice] %>
+			<div id="notice">
+				<%= flash[:notice] %>
+			</div>
 		<% end %>
 
 		<div id="new-link">

@@ -8,7 +8,11 @@
 
 	<body>
 		
-		<h1>Welcome to the bookmark manager</h1>
+		<% if current_user %>
+			<h1> Welcome, <%= current_user.email %> </h1>
+		<%else%> 
+			<h1> Welcome to the bookmark manager </h1>
+		<% end %>
 
 		<div id="new-link">
 			<form action="/links" method="post">

@@ -1,3 +1,20 @@
 body {
   background-color: #00d9ff;
 }
+
+#sign_in {
+	display: inline;
+	float: right;
+	z-index: 1;
+	margin-top: -15px;
+}
+
+#sign_in a {
+	padding-left: 5px; 
+	border-left: 1px solid black;
+}
+
+#sign_in a:hover {
+	text-decoration: none;
+	color: red;
+}

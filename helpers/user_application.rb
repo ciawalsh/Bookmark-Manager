@@ -27,3 +27,16 @@ module SessionHelpers
 	end
 
 end
+
+module SendEmail
+
+	def send_simple_message(email, text)
+	  RestClient.post "https://api:key-8422790f54da4af4960c1293da5262eb"\
+	  "@api.mailgun.net/v2/sandbox7760c7a3adab44adb4b6fe0e23f6c8ea.mailgun.org/messages",
+	  :from => "Mailgun Sandbox <postmaster@sandbox7760c7a3adab44adb4b6fe0e23f6c8ea.mailgun.org>",
+	  :to => email,
+	  :subject => "Forgotten Password",
+	  :text => text
+	end
+
+end

@@ -1,24 +1,30 @@
-<head>
-		<title>Bookmark manager</title>
-  	<link rel="stylesheet" type="text/css" href="stylesheets/mystyle.css">  
-</head>
+<!DOCTYPE html>
+<html>
 
-<body>
-	<% if flash[:errors] && !flash[:errors].empty? %>
-		Sorry, there were the following problems with the form;
-		<ul id="errors">
-			<% flash[:errors].each do |error| %>
-				<li> <%= error %> </li>
-			<% end %>
-		</ul>
-	<% end %>	
+	<head>
+			<title>Sign Up :)</title>
+	  	<link rel="stylesheet" type="text/css" href="../stylesheets/mystyle.css">  
+	</head>
 
-	<h1>Please Sign Up :)</h1>
+	<body>
+		<% if flash[:errors] && !flash[:errors].empty? %>
+			Sorry, there were the following problems with the form;
+			<ul id="errors">
+				<% flash[:errors].each do |error| %>
+					<li> <%= error %> </li>
+				<% end %>
+			</ul>
+		<% end %>	
 
-	<form action="/users" method="post">
-		Email: <input name="email" type="text" value="<%= @user.email %>">
-		Password: <input name="password" type="password">
-		Confirm Password: <input name="password_confirmation" type="password">
-		<input type="submit" value="Sign Up">
-	</form>
-</body>
+		<h1>Please Sign Up :)</h1>
+
+		<form action="/users" method="post">
+			Email: <input name="email" type="text" value="<%= @user.email %>">
+			Password: <input name="password" type="password">
+			Confirm Password: <input name="password_confirmation" type="password">
+			<input type="submit" value="Sign Up">
+		</form>
+
+	</body>
+
+</html>

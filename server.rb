@@ -1,14 +1,19 @@
 require_relative 'database'
 require 'sinatra/base'
 require 'rack-flash'
+require 'mailgun'
+# require 'sinatra/url_for'
 
 class BookmarkManager < Sinatra::Base
 	helpers UserSession
+	helpers SendEmail
+	# helpers Sinatra::UrlForHelper
 
 	enable :sessions
 	set :session_secret, 'super secret'
 	use Rack::Flash
 	use Rack::MethodOverride
+	
 
 	get '/' do
 		@links = Link.all
@@ -47,6 +52,35 @@ class BookmarkManager < Sinatra::Base
 			flash.now[:errors] = @user.errors.full_messages
 			erb :"users/new"
 		end
+	end
+
+	get '/users/forgotten' do
+		erb :"users/forgotten"
+	end
+
+	post '/users/forgotten' do
+		User.password_reset(params[:email])
+		user = User.first(:email => params[:email])
+		message = user.password_token
+		session[:email] = user.email 
+		# link = url_for "/users/reset_password/#{message}", :full
+		link = "127.0.0.1:9393/users/reset_password/#{message}"
+		send_simple_message(params[:email], link)
+		redirect '/'
+	end
+
+	get "/users/reset_password/:token" do
+		erb :"users/new_password"
+	end
+
+	post '/users/reset_password' do
+		user = User.first(:password_token => params[:token])
+		user.update(:password => params[:password],
+								:password_confirmation => params[:password_confirmation])
+		user.password_token = nil
+		user.save
+		session[:user_id] = user.id
+		redirect '/'
 	end
 
 	get '/sessions/new' do

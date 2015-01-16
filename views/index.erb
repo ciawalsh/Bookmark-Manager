@@ -3,25 +3,35 @@
 	
 	<head>
 		<title>Bookmark manager</title>
+  	<link rel="stylesheet" type="text/css" href="stylesheets/css_reset.css"> 
   	<link rel="stylesheet" type="text/css" href="stylesheets/mystyle.css">  
 	</head>
 
-	<body>
+	<header>
+
+		<div id="user-links">
+			<% if current_user %>
+				<span id="welcome-message"> Welcome, <%= current_user.email %> </span>
+			<%else%> 
+				<span id="welcome-message"> Welcome to the bookmark manager </span>
+			<% end %>
+		</div>
 
 		<div id="sign_in">
 			<a href="/sessions/new">Log In</a>
 			<a href="/users/new">Sign Up</a>
+			<% if current_user %>
+				<form class="sign_out" action="/sessions" method="post">
+					<input type="hidden" name="_method" value="delete">
+					<input type="submit" value="Sign Out">
+				</form>
+			<% end %>
 		</div>
+
+	</header>
+
+	<body>
 		
-		<% if current_user %>
-			<h1> Welcome, <%= current_user.email %> </h1>
-			<form action="/sessions" method="post">
-				<input type="hidden" name="_method" value="delete">
-				<input type="submit" value="Sign Out">
-			</form>
-		<%else%> 
-			<h1> Welcome to the bookmark manager </h1>
-		<% end %>
 
 		<% if flash[:notice] %>
 			<div id="notice">
@@ -34,18 +44,19 @@
 				Url: <input type="text" name="url">
 				Title: <input type="text" name="title">
 				Tags: <input type="text" name="tags">
-				<input type="submit" value="Add Link">
+				<input id="button" type="submit" value="Add Link">
 			</form>
 		</div>
 
-
-		<ul>
-	  	<% @links.each do |link| %>
-	    	<li>
-	    		<a href="<%= link.url %>"><%= link.title %></a>
-	    	</li>
-	  	<% end %>
-		</ul>
+		<div id="links">
+			<ul>
+		  	<% @links.each do |link| %>
+		    	<li>
+		    		<a href="<%= link.url %>"><%= link.title %></a>
+		    	</li>
+		  	<% end %>
+			</ul>
+		</div>
 
 	</body>
 

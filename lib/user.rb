@@ -11,6 +11,9 @@ class User
 	property :email, String, :unique => true
 
 	property :password_digest, Text
+	property :password_token, Text
+	property :password_token_timestamp, DateTime
+
 
 	validates_uniqueness_of :email
 	validates_confirmation_of :password
@@ -27,6 +30,13 @@ class User
 		else
 			nil
 		end
+	end
+
+	def self.password_reset(email)
+		user = first(:email => email)
+		user.password_token = (1..64).map{('A'..'Z').to_a.sample}.join
+		user.password_token_timestamp = Time.now
+		user.save
 	end
 
 end

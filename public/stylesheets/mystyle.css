@@ -2,16 +2,34 @@ body {
   background-color: #00d9ff;
 }
 
+#user-links {
+	height: 50px;
+	width: 100%;
+	background-color: black;
+	display: flex;
+}
+
+#welcome-message {
+	position: absolute;
+	margin-top: 5px;
+	margin-left: 20px;
+	color: white;
+	font-size: 45px;
+	font-family: Cursive;
+}
+
 #sign_in {
 	display: inline;
 	float: right;
 	z-index: 1;
-	margin-top: -15px;
+	margin-top: -40px;
+	margin-right: 10px;
+	font-size: 22px;
 }
 
 #sign_in a {
 	padding-left: 5px; 
-	border-left: 1px solid black;
+	border-left: 1px solid white;
 }
 
 #sign_in a:hover {
@@ -19,7 +37,46 @@ body {
 	color: red;
 }
 
+#sign_in a:visited {
+	color: white;
+}
+
+#sign_in .sign_out {
+	margin-top: 5px;
+	margin-left: 22px;
+}
+
 ul li a:hover {
 	text-decoration: none;
 	color: red;
 }
+
+form {
+	background:#fff;
+	padding:1em;
+	border:1px solid #eee;
+	margin:1em;
+	width:10em;
+}
+
+input {
+	padding:0.15em;
+	width:10em;
+	border:1px solid #ddd;
+	background:#fafafa;
+	font:bold 0.95em arial, sans-serif;
+}
+
+input:hover, input:focus {
+	border-color:#c5c5c5;
+	background:#f6f6f6;
+}
+
+#button {
+	width: 100px;
+} 
+
+
+
+
+
